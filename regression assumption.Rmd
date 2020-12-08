@@ -126,6 +126,8 @@ p-value 0.0582 dan > 0.05 maka gagal menolak H0. Sehingga tidak terjadi autokore
 
 # Heterokedastisitas
 
+Menggunakan Breusch-Pagan Test
+
 ```{r hetero}
 library(lmtest)
 bptest(model_reg)
