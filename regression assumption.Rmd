@@ -86,7 +86,7 @@ library(car)
 vif(model_reg)
 ```
 
-VIF dibawah 10 berarti tidak terjadi multikolinieritas
+VIF semua variabel independen dibawah 10 berarti tidak terjadi multikolinieritas
 
 # Autokorelasi
 
@@ -117,8 +117,8 @@ durbinWatsonTest(model_reg)
 
 Hipotesis
 
-H0 = Terjadi autokorelasi
-H1 = Tidak terjadi autokerelasi
+H0 = Tidak terjadi autokorelasi
+H1 = Terjadi autokerelasi
 
 Tolak H0 jika p-value <= 0.05
 p-value 0.0582 dan > 0.05 maka gagal menolak H0. 
@@ -130,8 +130,8 @@ library(lmtest)
 bptest(model_reg)
 ```
 
-H0 = Terjadi heterokedastisitas
-H1 = Tidak terjadi heterokedastisitas
+H0 = Tidak terjadi heterokedastisitas
+H1 = Terjadi heterokedastisitas
 
 Tolak H0 jika p-value <= 0.05
 p-value 0.1623 dan > 0.05 maka gagal menolak H0. 
