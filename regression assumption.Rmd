@@ -75,9 +75,11 @@ Tolak H0 jika p-value <= 0.05
 shapiro.test(residual_model)
 ```
 
-Dari hasil di atas di peroleh p-value 3.939e-09 lebih kecil dari 0.05, gagal menolak H0, sehingga data tidak berdistribusi normal
+Dari hasil di atas di peroleh p-value 3.939e-09 lebih kecil dari 0.05, gagal menolak H0, sehingga data berdistribusi normal
 
 # Multikolinieritas
+
+Cara ini sangat mudah, hanya melihat apakah nilai VIF untuk masing-masing variabel lebih besar dari 10 atau tidak. Bila nilai VIF lebih besar dari 10 maka diindikasikan model tersebut memiliki gejala Multikolinieritas.
 
 ```{r multiko}
 library(car)
