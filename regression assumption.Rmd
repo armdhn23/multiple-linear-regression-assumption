@@ -102,6 +102,7 @@ Jika dw < dL maka terdapat autokorelasi positif,
 Jika dw > dU maka tidak terdapat autokorelasi positif,
 
 Jika dL < dw < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
+
 Deteksi Autokorelasi Negatif:
 
 Jika (4 – dw) < dL maka terdapat autokorelasi negatif,
@@ -134,6 +135,7 @@ bptest(model_reg)
 + H1 = Terjadi heterokedastisitas
 
 Tolak H0 jika p-value <= 0.05
+
 p-value 0.1623 dan > 0.05 maka gagal menolak H0. Sehingga tidak terjadi heterokedastisitas
 
 
