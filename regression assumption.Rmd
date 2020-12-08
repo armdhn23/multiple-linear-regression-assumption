@@ -121,7 +121,7 @@ H0 = Tidak terjadi autokorelasi
 H1 = Terjadi autokerelasi
 
 Tolak H0 jika p-value <= 0.05
-p-value 0.0582 dan > 0.05 maka gagal menolak H0. 
+p-value 0.0582 dan > 0.05 maka gagal menolak H0. Sehingga tidak terjadi autokorelasi.
 
 # Heterokedastisitas
 
@@ -134,7 +134,11 @@ H0 = Tidak terjadi heterokedastisitas
 H1 = Terjadi heterokedastisitas
 
 Tolak H0 jika p-value <= 0.05
-p-value 0.1623 dan > 0.05 maka gagal menolak H0. 
+p-value 0.1623 dan > 0.05 maka gagal menolak H0. Sehingga tidak terjadi heterokedastisitas
 
+
+# Referensi
+
+https://rpubs.com/aryn999/LinearRegressionAssumptionsAndDiagnosticsInR
 
 
