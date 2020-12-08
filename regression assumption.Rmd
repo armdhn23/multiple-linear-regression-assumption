@@ -1,0 +1,138 @@
+---
+title: "Asumsi Regresi"
+author: "Ashari"
+date: "12/8/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data
+
+Data yang digunakan adalah data marketing dari packages datarium. Install terlebih dahulu jila belum tersedia
+
+```
+install.packages('datarium')
+```
+
+Load data
+
+```{r load data}
+data("marketing", package = "datarium")
+head(marketing)
+```
+
+Data diatas merupakan hasil penjualan suatu produk dan biaya yang dikeluarkan untuk promosi pada media youtube, facebook dan newspaper.
+
+# Membuat model
+
+```{r membuat model}
+model_reg <- lm(sales ~ youtube + facebook + newspaper, data = marketing)
+model_reg
+print('#######')
+summary(model_reg)
+```
+
+# Uji kenormalan
+
+## QQPLOT
+
+```{r qqplot}
+plot(model_reg, 2)
+```
+
+## Shapiro Wilk
+
+Mengambil nilai residual pada model
+
+```{r resid}
+residual_model <- resid(model_reg) 
+head(residual_model) # 6 residual pertama
+```
+
+Plot Residu
+
+```{r plot_residu}
+library(ggplot2)
+ggplot(as.data.frame(residual_model), aes(residual_model))+
+  geom_density(color="black", fill="lightgreen") +
+  labs(title="Distribusi Residu",x="x", y = "Density") +
+  theme_minimal()  
+```
+
+Uji Shapiro Wilk
+
+Hipotesis
+
+H0 = Data berdistribusi normal
+H1 = Data tidak berdistribusi normal
+
+Tolak H0 jika p-value <= 0.05
+
+```{r shapiro}
+shapiro.test(residual_model)
+```
+
+Dari hasil di atas di peroleh p-value 3.939e-09 lebih kecil dari 0.05, gagal menolak H0, sehingga data tidak berdistribusi normal
+
+# Multikolinieritas
+
+```{r multiko}
+library(car)
+vif(model_reg)
+```
+
+VIF dibawah 10 berarti tidak terjadi multikolinieritas
+
+# Autokorelasi
+
+```{r auto}
+library(lmtest)
+dwtest(model_reg)
+```
+
+Deteksi Autokorelasi Positif:
+
+Jika dw < dL maka terdapat autokorelasi positif,
+
+Jika dw > dU maka tidak terdapat autokorelasi positif,
+
+Jika dL < dw < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
+Deteksi Autokorelasi Negatif:
+
+Jika (4 – dw) < dL maka terdapat autokorelasi negatif,
+
+Jika (4 – dw) > dU maka tidak terdapat autokorelasi negatif,
+
+Jika dL < (4 – dw) < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
+
+
+```{r auto2}
+durbinWatsonTest(model_reg)
+```
+
+Hipotesis
+
+H0 = Terjadi autokorelasi
+H1 = Tidak terjadi autokerelasi
+
+Tolak H0 jika p-value <= 0.05
+p-value 0.0582 dan > 0.05 maka gagal menolak H0. 
+
+# Heterokedastisitas
+
+```{r hetero}
+library(lmtest)
+bptest(model_reg)
+```
+
+H0 = Terjadi heterokedastisitas
+H1 = Tidak terjadi heterokedastisitas
+
+Tolak H0 jika p-value <= 0.05
+p-value 0.1623 dan > 0.05 maka gagal menolak H0. 
+
+
+
