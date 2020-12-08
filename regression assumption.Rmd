@@ -97,20 +97,32 @@ dwtest(model_reg)
 
 Deteksi Autokorelasi Positif:
 
-Jika dw < dL maka terdapat autokorelasi positif,
++ Jika dw < dL maka terdapat autokorelasi positif,
 
-Jika dw > dU maka tidak terdapat autokorelasi positif,
++ Jika dw > dU maka tidak terdapat autokorelasi positif,
 
-Jika dL < dw < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
++ Jika dL < dw < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
 
 Deteksi Autokorelasi Negatif:
 
-Jika (4 – dw) < dL maka terdapat autokorelasi negatif,
++ Jika (4 – dw) < dL maka terdapat autokorelasi negatif,
 
-Jika (4 – dw) > dU maka tidak terdapat autokorelasi negatif,
++ Jika (4 – dw) > dU maka tidak terdapat autokorelasi negatif,
 
-Jika dL < (4 – dw) < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
++ Jika dL < (4 – dw) < dU maka pengujian tidak meyakinkan atau tidak dapat disimpulkan.
 
+
+Lihat tabel disini http://lkeb.umm.ac.id/files/file/tabel-dw.pdf
+
++ dw = 2.0836
++ dl = 1.7279
++ du= 1.8094
+
+Dapat dilihat bahwa 
++ dw > dU maka tidak terdapat autokorelasi positif
++(4 – dw) > dU maka tidak terdapat autokorelasi negatif
+
+Sehingga dapat disimpulkan tidak terjadi autokorelasi
 
 ```{r auto2}
 durbinWatsonTest(model_reg)
